@@ -4,7 +4,20 @@ sovelluksella käyttäjän on tarkoitus pystyä pelaamaan miinaharavaa ja kirjoi
 
 
 # documentaaatio
-[työpäiväkirja](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/tyopaivakirja.md)
-[vaatimusmäärittely](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/vaatimusmaarittely.md)
+- [työpäiväkirja](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/tyopaivakirja.md)
+- [vaatimusmäärittely](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/vaatimusmaarittely.md)
+- [changelog](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/changelog.md)
+
+## asennus
+
+- asenna riippuvuudet: 'poetry install'
+- käynnistä: 'poetry run invoke start'
 
 
+### invoke
+Muita invoke komentoja on
+
+1. poetry run invoke test
+2. poetry run coverage-report
+
+   
