@@ -1,15 +1,10 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Ohjelmistotekniikka, Minesweeper harjoitustyo
+
+sovelluksella käyttäjän on tarkoitus pystyä pelaamaan miinaharavaa ja kirjoittamaan tulokset tiedostoon automaattisesti.
 
 
-aion *tehdä* **minesweeper pelin** 
+# documentaaatio
+[työpäiväkirja](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/tyopaivakirja.md)
+[vaatimusmäärittely](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/vaatimusmaarittely.md)
 
-https://github.com/AnteroVehkaoja/ot-harjoitustyo/tree/main/laskarit
 
-
-työpäiväkirja
-
-https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/tyopaivakirja.md
-
-vaatimusmäärittely
-
-https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/vaatimusmaarittely.md
