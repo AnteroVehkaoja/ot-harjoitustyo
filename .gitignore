@@ -2,3 +2,13 @@
 .coverage
 htmlcov
 __pycache__
+.vscode
+.DS_Store
+*.py[cod]
+*$py.class
+
+# data files
+data/database.sqlite
+data/todos.csv
+data/test-database.sqlite
+data/test-todos.csv
