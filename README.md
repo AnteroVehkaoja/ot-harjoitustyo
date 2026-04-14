@@ -18,6 +18,6 @@ sovelluksella käyttäjän on tarkoitus pystyä pelaamaan miinaharavaa ja kirjoi
 Muita invoke komentoja on
 
 1. poetry run invoke test
-2. poetry run coverage-report
-
+2. poetry run invoke coverage-report
+3. poetry run invoke lint
    
