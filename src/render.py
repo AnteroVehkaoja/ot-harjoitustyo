@@ -1,5 +1,4 @@
 import pygame
-import os
 
 mine = pygame.image.load("src/Pictures/mine.png")
 one = pygame.image.load("src/Pictures/one.png")
@@ -17,24 +16,28 @@ empty = pygame.image.load("src/Pictures/empty.png")
 
 
 class Renderer:
-    def __init__(self,display,grid) :
+    def __init__(self,display,grid,text) :
         self.display = display
         self.grid = grid
+        self.text = text
 
 
 
     def rendergrid(self):
+        self.display.fill((255, 255, 255))
         for row in self.grid.grid:
             for cell in row:
                 self.rendercell(cell,self.display)
+        self.drawtext(self.text.display, self.text.displayplace ,self.display)
         pygame.display.update()
-
-
     def rendercell(self,cell,display):
 
-        if not cell.beenclickedleft:
+        if cell.isflagged:
+            display.blit(flag, cell.area)
+
+        elif not cell.beenclickedleft:
             self.drawempty(cell,display)
-        
+
         elif cell.val == -1 :
             display.blit(mine, cell.area)
         elif cell.val == 0:
@@ -60,3 +63,9 @@ class Renderer:
 
     def drawempty(self,cell,display):
         display.blit(gridim, cell.area)
+
+    def drawtext(self,text,place,display):
+        screen = pygame.font.SysFont("Sans",25, True).render(text, True, (200, 0, 0))
+        rect = pygame.Rect(place,(10,10))
+
+        display.blit(screen,rect)
