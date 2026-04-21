@@ -8,6 +8,7 @@ sovelluksella käyttäjän on tarkoitus pystyä pelaamaan miinaharavaa ja kirjoi
 - [vaatimusmäärittely](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/vaatimusmaarittely.md)
 - [changelog](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/changelog.md)
 - [arkkitehtuuri](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/arkkitehtuuri.md)
+- [release1](https://github.com/AnteroVehkaoja/ot-harjoitustyo/releases/tag/week5)
 
 ## asennus
 
