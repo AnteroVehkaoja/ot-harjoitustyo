@@ -1,17 +1,23 @@
+import os
 import pygame
 
-mine = pygame.image.load("src/Pictures/mine.png")
-one = pygame.image.load("src/Pictures/one.png")
-two = pygame.image.load("src/Pictures/two.png")
-three = pygame.image.load("src/Pictures/three.png")
-four = pygame.image.load("src/Pictures/four.png")
-five = pygame.image.load("src/Pictures/five.png")
-six = pygame.image.load("src/Pictures/six.png")
-seven = pygame.image.load("src/Pictures/seven.png")
-eight = pygame.image.load("src/Pictures/eight.png")
-flag = pygame.image.load("src/Pictures/flag.png")
-gridim = pygame.image.load("src/Pictures/griddef.png")
-empty = pygame.image.load("src/Pictures/empty.png")
+
+name = os.path.dirname(__file__)
+os.path.join(name,"Pictures", "mine.png")
+
+
+mine = pygame.image.load(os.path.join(name,"Pictures", "mine.png"))
+one = pygame.image.load(os.path.join(name,"Pictures", "one.png"))
+two = pygame.image.load(os.path.join(name,"Pictures", "two.png"))
+three = pygame.image.load(os.path.join(name,"Pictures", "three.png"))
+four = pygame.image.load(os.path.join(name,"Pictures", "four.png"))
+five = pygame.image.load(os.path.join(name,"Pictures", "five.png"))
+six = pygame.image.load(os.path.join(name,"Pictures", "six.png"))
+seven = pygame.image.load(os.path.join(name,"Pictures", "seven.png"))
+eight = pygame.image.load(os.path.join(name,"Pictures", "eight.png"))
+flag = pygame.image.load(os.path.join(name,"Pictures", "flag.png"))
+gridim = pygame.image.load(os.path.join(name,"Pictures", "griddef.png"))
+empty = pygame.image.load(os.path.join(name,"Pictures", "empty.png"))
 
 
 
@@ -23,12 +29,14 @@ class Renderer:
 
 
 
-    def rendergrid(self):
+    def rendergrid(self,time):
         self.display.fill((255, 255, 255))
         for row in self.grid.grid:
             for cell in row:
                 self.rendercell(cell,self.display)
         self.drawtext(self.text.display, self.text.displayplace ,self.display)
+        self.drawmine(self.text.displaymine, self.text.displaymineplace ,self.display)
+        self.drawtimer(time,(self.text.displayplace[0], self.text.displayplace[1] + 60), self.display)
         pygame.display.update()
     def rendercell(self,cell,display):
 
@@ -68,4 +76,14 @@ class Renderer:
         screen = pygame.font.SysFont("Sans",25, True).render(text, True, (200, 0, 0))
         rect = pygame.Rect(place,(10,10))
 
+        display.blit(screen,rect)
+
+    def drawmine(self,text,place,display):
+        screen = pygame.font.SysFont("Sans",25, True).render(text, True, (200, 0, 0))
+        rect = pygame.Rect(place,(10,10))
+        display.blit(screen,rect)
+
+    def drawtimer(self,text,place,display):
+        screen = pygame.font.SysFont("Sans",25, True).render(str(text), True, (200, 0, 0))
+        rect = pygame.Rect(place,(10,10))
         display.blit(screen,rect)

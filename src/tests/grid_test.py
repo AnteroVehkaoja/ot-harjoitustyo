@@ -6,10 +6,10 @@ import pygame
 class TestGrid(unittest.TestCase):
     def setUp(self):
         self.grid = grid.Grid(4,4,4)
-        self.grid.grid = [     [grid.GridCell(0,0,48,1),grid.GridCell(1,0,48,1),grid.GridCell(2,0,48,1),grid.GridCell(3,0,48,1)] 
-                              ,   [grid.GridCell(0,1,48,1),grid.GridCell(1,1,48,-1,ismine= True),grid.GridCell(2,1,48,-1,ismine=True),grid.GridCell(3,1,48,1)]   
-                              ,   [grid.GridCell(0,2,48,1),grid.GridCell(1,2,48,-1,ismine= True),grid.GridCell(2,2,48,-1,ismine=True),grid.GridCell(3,2,48,1)]
-                              ,   [grid.GridCell(0,3,48,1),grid.GridCell(1,3,48,1),grid.GridCell(2,3,48,1),grid.GridCell(3,3,48,1)]   ]
+        self.grid.grid = [     [grid.GridCell(0,0,48,1),grid.GridCell(1,0,48,2),grid.GridCell(2,0,48,2),grid.GridCell(3,0,48,1)] 
+                              ,   [grid.GridCell(0,1,48,2),grid.GridCell(1,1,48,-1,ismine= True),grid.GridCell(2,1,48,-1,ismine=True),grid.GridCell(3,1,48,2)]   
+                              ,   [grid.GridCell(0,2,48,2),grid.GridCell(1,2,48,-1,ismine= True),grid.GridCell(2,2,48,-1,ismine=True),grid.GridCell(3,2,48,2)]
+                              ,   [grid.GridCell(0,3,48,1),grid.GridCell(1,3,48,2),grid.GridCell(2,3,48,2),grid.GridCell(3,3,48,1)]   ]
         self.cell = grid.GridCell(2,2,48,3)
 
     def test_updatecell_works_on_right_click(self):
@@ -34,3 +34,32 @@ class TestGrid(unittest.TestCase):
         self.assertEqual(cells[0].x,1)
         self.assertEqual(cells[1].ismine,True)
         self.assertEqual(cells[2].ismine,False)
+
+    def test_get_flags_in_surroindings(self):
+        self.grid.grid[0][0].updatecell(self.grid,self.grid.grid[0][0],3)
+        self.assertEqual(self.grid.GetFlagsInSurroundings(self.grid.grid[1][1]),1)
+
+    def test_info_works(self):
+        self.assertEqual(self.grid.info("reset"),"reset with a 4 x 4 grid that had 4 mines, in a time of " )
+        self.grid.won = True
+        self.assertEqual(self.grid.info("reset"),"won with a 4 x 4 grid that had 4 mines, in a time of " )
+        self.grid.won = False
+        self.grid.lost = True
+        self.assertEqual(self.grid.info("reset"),"lost with a 4 x 4 grid that had 4 mines, in a time of " )
+        
+    def test_left_click_on_zero_propogate_works(self):
+        self.grid.grid = [     [grid.GridCell(0,0,48,0),grid.GridCell(1,0,48,1),grid.GridCell(2,0,48,1),grid.GridCell(3,0,48,1)] 
+                              ,   [grid.GridCell(0,1,48,1),grid.GridCell(1,1,48,3),grid.GridCell(2,1,48,-1,ismine=True),grid.GridCell(3,1,48,2)]   
+                              ,   [grid.GridCell(0,2,48,1),grid.GridCell(1,2,48,-1,ismine= True),grid.GridCell(2,2,48,-1,ismine=True),grid.GridCell(3,2,48,2)]
+                              ,   [grid.GridCell(0,3,48,1),grid.GridCell(1,3,48,2),grid.GridCell(2,3,48,2),grid.GridCell(3,3,48,1)]   ]
+        self.grid.grid[0][0].updatecell(self.grid,self.grid.grid[0][0],1)
+        self.assertTrue(self.grid.grid[0][1].beenclickedleft)
+        self.assertTrue(self.grid.grid[1][1].beenclickedleft)
+        self.assertTrue(self.grid.grid[1][0].beenclickedleft)
+
+    def test_left_click_on_flag_propogate_works(self):
+        self.grid.grid[1][1].updatecell(self.grid,self.grid.grid[1][1],3)
+        self.grid.grid[0][0].updatecell(self.grid,self.grid.grid[0][0],1)
+        self.grid.grid[0][0].updatecell(self.grid,self.grid.grid[0][0],1)
+        self.assertTrue(self.grid.grid[0][1].beenclickedleft)
+        self.assertTrue(self.grid.grid[1][0].beenclickedleft)

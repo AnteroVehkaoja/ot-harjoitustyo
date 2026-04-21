@@ -3,12 +3,12 @@ from gameloop import Gameloop
 import render
 import grid
 from event_queue import EventQueue
+import timer
+import file
+from config import HEIGHT , CELL_SIZE, WITDTH, NUMBEROFMINES
 
-CELL_SIZE = 48
 
-HEIGHT = 7
-WITDTH = 7
-NUMBEROFMINES = 7
+
 def main():
 
     display_height = HEIGHT * CELL_SIZE
@@ -22,11 +22,15 @@ def main():
 
     text = grid.Text(HEIGHT,CELL_SIZE)
 
+    writee = file.Write()
+
     renderer = render.Renderer(display2,gride,text)
 
     event_queue = EventQueue()
 
-    gameloop = Gameloop(gride,text,renderer,event_queue,48)
+    clock = timer.Clock()
+
+    gameloop = Gameloop(gride,text,renderer,event_queue,writee,clock)
 
     pygame.init()
 
