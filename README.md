@@ -12,13 +12,14 @@ sovelluksella käyttäjän on tarkoitus pystyä pelaamaan miinaharavaa ja kirjoi
 ## asennus
 
 - asenna riippuvuudet: 'poetry install'
+- mene poetry virtualliympäristöön komennolls 'eval $(poetry env activate)'
 - käynnistä: 'poetry run invoke start'
 
 
 ### invoke
 Muita invoke komentoja on
 
-1. poetry run invoke test
-2. poetry run invoke coverage-report
-3. poetry run invoke lint
+1. poetry run invoke test  mikä ajaa testit
+2. poetry run invoke coverage-report   mikä ajaa testit ja kirjoittaa raportin
+3. poetry run invoke lint   ajaa pylint sovelluksen
    
