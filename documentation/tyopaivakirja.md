@@ -10,4 +10,6 @@ työpäiväkirja
 | 14.4. | 5    | pieni refaktorointi, voitto ja häviötilat,uudellenyrittäminen,testit ja pylint  |
 | 20.4. | 2    | ruudun painaminen kun sen ympärillä on lippuja avaa automaattisesti ruutuja ja miinojen jäljellä olevan määrän näyttäminen   |
 | 21.4   | 6    | tidostoon tulosten tallentaminen, ajan näyttäminen, .env tiedoston lisääminen testien laajennus. | 
-| yht | 25   |   |
+| 27.4   | 2    | alustavan ratkomisalgoritmin suunnittelu ja sen aloittaminen | 
+| 27.4   | 3    | alustavan ratkomisalgoritmin toteuttaminen ja parin testin lisääminen | 
+| yht | 30   |   |
