@@ -11,5 +11,5 @@ työpäiväkirja
 | 20.4. | 2    | ruudun painaminen kun sen ympärillä on lippuja avaa automaattisesti ruutuja ja miinojen jäljellä olevan määrän näyttäminen   |
 | 21.4   | 6    | tidostoon tulosten tallentaminen, ajan näyttäminen, .env tiedoston lisääminen testien laajennus. | 
 | 27.4   | 2    | alustavan ratkomisalgoritmin suunnittelu ja sen aloittaminen | 
-| 27.4   | 3    | alustavan ratkomisalgoritmin toteuttaminen ja parin testin lisääminen | 
+| 28.4   | 3    | alustavan ratkomisalgoritmin toteuttaminen ja parin testin lisääminen | 
 | yht | 30   |   |
