@@ -8,6 +8,7 @@
     gameloop "1" --> "1" Clock
     grid "1" --> "*" gridcell
     grid "1" --> "1" text
+    MineZone "1" --> "1" gridcell
     renderer "1" --> "1" grid
     renderer "1" --> "1" text
 ```
