@@ -1,9 +1,23 @@
 import random
+import copy
 import pygame
-
+from solve_algorithm import solve
 
 class GridCell:
+    """
+    class that represents a cell in the minesweeper grid
+    """
     def __init__(self,xpos,ypos,gridsize,val,ismine = False,beenclicked = False):
+        """_summary_
+
+        Args:
+            xpos (_int_): x position from 0 to whatever is theth
+            ypos (_int_): _same as above_
+            gridsize (_int_): _size of the images of the grid_
+            val (_int_): _the val of the cell ie mine,0,1,2,ect_
+            ismine (bool): _ismine_. Defaults to False.
+            beenclicked (bool): _has it been leftcliked_. Defaults to False.
+        """
         self.x = xpos
         self.y = ypos
         self.val = val
@@ -16,6 +30,13 @@ class GridCell:
 
 
     def updatecell(self,grid,cell,input):
+        """_called to update a cell based on input_
+
+        Args:
+            grid (_Grid_): _grid that the cell is part of_
+            cell (_GridCell_): _itself_
+            input (_int_): _1 for left 3 for rightclick_
+        """
         if input == 1 and cell.isflagged: #if input is left click and its a flag dont register input
             pass
         elif input == 1 and cell.ismine: # leftclick and mine operation
@@ -41,13 +62,20 @@ class GridCell:
                 grid.minecount += 1
 
     def propogate(self,grid,cell,input):
+        """_called to update cells around a cell_
+
+        Args:
+            grid (_Grid_): _grid that cell is apart of_
+            cell (_Cell_): _itself_
+            input (_int_): _1 or 3 for left and rightclick _
+        """
         cells = grid.GetCellsInSurroundings(cell)
         for gridcell in cells:
             if gridcell.val == 0:
                 self.updatecell(grid,gridcell,input)
             # if val isnt zero handle normal left click operation
             # since no more propogation is needed
-            if gridcell.beenclickedleft is False and (gridcell.isflagged == False):
+            if gridcell.beenclickedleft is False and (gridcell.isflagged is False):
                 if gridcell.ismine:
                     gridcell.val = -1 #
                     gridcell.beenclickedleft = True
@@ -55,8 +83,27 @@ class GridCell:
                 gridcell.beenclickedleft = True
                 grid.cellsleft -= 1
 
+    def __eq__(self, other):
+        if isinstance(other, GridCell):
+            if ((self.x == other.x) and
+               (self.y == other.y) and
+               (self.val == other.val) and
+               (self.ismine == other.ismine) and
+               (self.beenclickedleft == other.beenclickedleft)):
+                return True
+        return False
+
 class Text:
+    """_class that stores text elements_
+    """
     def __init__(self,height,size,mine="0"):
+        """_constructor for text_
+
+        Args:
+            height (_int_): _height of the grid in number of cells_
+            size (_int_): _size of the cells in px_
+            mine (str, ): _amount of mines left_. Defaults to "0".
+        """
         self.display = "Playing"
         self.displaymine = mine
         self.size = size
@@ -68,6 +115,12 @@ class Text:
         self.display = "Playing"
 
     def update(self,result,text):
+        """_updates text based on result_
+
+        Args:
+            result (_str_): _won,lost,wrong will change the text_
+            text (_str_): _will change the text to this_
+        """
         if result == "won":
             self.display = text
         elif result =="lost":
@@ -87,7 +140,17 @@ class Text:
 # in its surroundings and change its value to that.
 
 class Grid:
-    def __init__(self,height,width,mines):
+    """_class that represents the entire grid_
+    """
+    def __init__(self,height,width,mines,guess = "no"):
+        """_constructor of grid class_
+
+        Args:
+            height (_int_): _height of grid in cells_
+            width (_int_): _width of grid in cells_
+            mines (_int_): _amount of mines_
+            guess (str): _decides if a guess free board is generated_. Defaults to "no".
+        """
         self.notgenerated = True
         self.lost = False
         self.won = False
@@ -98,7 +161,7 @@ class Grid:
         self.cellsleft = self.height * self.width - self.mines
         self.minecount = mines
         self.grid = self.CreateEmpty()
-
+        self.guess = guess
 
     def CreateEmpty(self): # empty grid for presentation at the start
         grid = []
@@ -111,11 +174,28 @@ class Grid:
         return grid
 
 
-        #function gameloop calls when a click happens
     def UpdateClick(self,pos,button,grid,text):
+        """_gameloop calls this on a click_
+
+        Args:
+            pos (_(int,int)_): _raw position of click from top left (x,y)_
+            button (_int_): _1 for left 3 for right_
+            grid (_Grid_): _grid that click is operating on_
+            text (_Text_): _Text that clikc is operating on_
+
+        Returns:
+            _bool_: _True if text changes_
+        """
         if self.notgenerated:
             self.notgenerated = False
-            self.grid = self.ActualGrid(pos,text)
+            if self.guess == "yes": # try 1k times to find a solvable board
+                x = 0
+                while x < 1000:
+                    self.grid = self.ActualGrid(pos,text)
+                    copye = copy.deepcopy(self)
+                    if solve(copye,pos):
+                        break
+                    x += 1
         #collision detection
         for row in self.grid:
             for cell in row:
@@ -146,14 +226,31 @@ class Grid:
         self.minecount = self.mines
 
     def info(self,write = "no"):
+        """_get info from the grid for writing result_
+
+        Args:
+            write (str): _if its reset it will write that_. Defaults to "no".
+
+        Returns:
+            _str_: _part of what to write as the result_
+        """
         if write == "reset" and (not(self.won or self.lost)):
             return f"reset with a {self.width} x {self.height} grid that had {self.mines} mines, in a time of "
-        elif self.won:
+        if self.won:
             return f"won with a {self.width} x {self.height} grid that had {self.mines} mines, in a time of "
-        elif self.lost:
+        if self.lost:
             return f"lost with a {self.width} x {self.height} grid that had {self.mines} mines, in a time of "
 
     def ActualGrid(self, positionraw,text):
+        """_generates the non empty grid_
+
+        Args:
+            positionraw (_(int,int)_): _raw position of click from top left (x,y)_
+            text (_Text_): _text class object for the grid_
+
+        Returns:
+            _[[Gridcell]]_: _list of rows of gridcell type objects_
+        """
         position = self.positiondecoder(positionraw) # will get form (xpos,ypos)
         mines = self.MakeMinePos(position,text) # position argument to tell where not to put mines
         grid = []
@@ -170,11 +267,18 @@ class Grid:
         for row in grid:
             for cell in row:
                 cell.val = self.GetMinesInSurroundings((cell.x,cell.y))
-        return grid
 
+        return self.grid
 
-    #combine the main part into one and these ones should just parse that result
     def GetMinesInSurroundings(self,pos):
+        """_get how many mines surround a pos_
+
+        Args:
+            pos (_(int,int)_): _position of cell in grid_
+
+        Returns:
+            _int_: _how many mines_
+        """
         count = 0
         for row in range(-1,2):
             for cell in range(-1,2):
@@ -188,17 +292,29 @@ class Grid:
 
     def GetFlagsInSurroundings(self,gridcell):
         count = 0
-        for row in range(-1,2):
-            for cell in range(-1,2):
-                if ( ( (gridcell.x + cell) >= 0 and (gridcell.x + cell) < self.width ) and
-                    (  (gridcell.y + row) >= 0 and (gridcell.y + row) < self.height ) and
-                    ( not( (cell == 0) and (row == 0))  ) ):
-                    if self.grid[gridcell.y + row][gridcell.x + cell].isflagged:
-                        count += 1
+        cells = self.GetCellsInSurroundings(gridcell)
+        for cell in cells:
+            if cell.isflagged:
+                count += 1
         return count
 
+    def GetUnopenedInSurroindings(self,gridcell):
+        ans = []
+        cells = self.GetCellsInSurroundings(gridcell)
+        for cell in cells:
+            if (not cell.beenclickedleft) and (not cell.isflagged):
+                ans.append(cell)
+        return ans
 
     def GetCellsInSurroundings(self,gridcell):
+        """_gets a list of the 3/5/8 gridcell type objects around a cell_
+
+        Args:
+            gridcell (_Gridcell_): _a cell_
+
+        Returns:
+            _[Gridcell]_: _a list of gridcell objects around the argument_
+        """
         cells = []
         for row in range(-1,2):
             for cell in range(-1,2):
@@ -209,6 +325,15 @@ class Grid:
         return cells
 
     def MakeMinePos(self,position,text): #(xpos,ypos)
+        """_generate mine positions around a spot so that that spot or its surrounding cells dont have mines_
+
+        Args:
+            position (_(int,int)_): _popsition of where not to put mines_
+            text (_Tect_): _text type object of the grid_
+
+        Returns:
+            _type_: _description_
+        """
         possiblepositions = []
         for row in range(self.height):
             for cell in range(self.width):
@@ -225,4 +350,12 @@ class Grid:
 
 # remember to change this when you add draw non board elements on the top or the left
     def positiondecoder(self,positionraw):
+        """_get the index position from raw coordinates_
+
+        Args:
+            positionraw (_(int,int)_): _raw position_
+
+        Returns:
+            _(int,int)_: _index position_
+        """
         return ((positionraw[0]//48 + 1),(positionraw[1]//48 + 1))

@@ -23,6 +23,13 @@ empty = pygame.image.load(os.path.join(name,"Pictures", "empty.png"))
 
 class Renderer:
     def __init__(self,display,grid,text) :
+        """_renders the entire grid and text to the display with pygame_
+
+        Args:
+            display (_?_): _pygame display object_
+            grid (_Grid_): _the grid that we are displaying_
+            text (_Text_): _the text that we are displaying_
+        """
         self.display = display
         self.grid = grid
         self.text = text
@@ -30,6 +37,11 @@ class Renderer:
 
 
     def rendergrid(self,time):
+        """_main function that renders the grid_
+
+        Args:
+            time (_?_): _time since start_
+        """
         self.display.fill((255, 255, 255))
         for row in self.grid.grid:
             for cell in row:

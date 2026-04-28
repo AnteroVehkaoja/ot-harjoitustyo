@@ -5,7 +5,7 @@ import grid
 from event_queue import EventQueue
 import timer
 import file
-from config import HEIGHT , CELL_SIZE, WITDTH, NUMBEROFMINES
+from config import HEIGHT , CELL_SIZE, WITDTH, NUMBEROFMINES, GEN_GRID
 
 
 
@@ -18,7 +18,7 @@ def main():
 
     pygame.display.set_caption("Minesweeper")
 
-    gride = grid.Grid(HEIGHT,WITDTH,NUMBEROFMINES)
+    gride = grid.Grid(HEIGHT,WITDTH,NUMBEROFMINES,GEN_GRID)
 
     text = grid.Text(HEIGHT,CELL_SIZE)
 
