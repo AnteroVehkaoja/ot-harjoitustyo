@@ -18,3 +18,7 @@
 - jos painaa numero ja sen numeron verran lippuja on sen ympärillä automaattisesti avaa sen ympärillä olevat ruudut
 - sovellus kertoo kuluneen ajan ja ei liputettujen miinnojen määrän
 - .env tiedosto josta pystyy muuttamaan ruudukon koota ja miinojen määrää
+
+## viikko 6
+- poistettu .env tiedosto
+- lisätty alustava arvaamaton asetus 
