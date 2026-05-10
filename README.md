@@ -12,6 +12,7 @@ sovelluksella käyttäjän on tarkoitus pystyä pelaamaan miinaharavaa ja kirjoi
 - [arkkitehtuuri](https://github.com/AnteroVehkaoja/ot-harjoitustyo/blob/main/documentation/arkkitehtuuri.md)
 - [release1](https://github.com/AnteroVehkaoja/ot-harjoitustyo/releases/tag/week5)
 - [release2](https://github.com/AnteroVehkaoja/ot-harjoitustyo/releases/tag/week6)
+- [loppupalautus](https://github.com/AnteroVehkaoja/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## asennus
 
