@@ -22,3 +22,7 @@
 ## viikko 6
 - poistettu .env tiedosto
 - lisätty alustava arvaamaton asetus 
+
+## viikko 7
+- parannettu arvaamaton asetusta
+- muutettu aika alkamaan ensimmäisestä klikkauksesta kun ennen se oli ruudukon lataamisesta.
