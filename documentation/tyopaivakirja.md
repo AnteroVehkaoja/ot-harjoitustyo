@@ -12,4 +12,6 @@ työpäiväkirja
 | 21.4   | 6    | tidostoon tulosten tallentaminen, ajan näyttäminen, .env tiedoston lisääminen testien laajennus. | 
 | 27.4   | 2    | alustavan ratkomisalgoritmin suunnittelu ja sen aloittaminen | 
 | 28.4   | 3    | alustavan ratkomisalgoritmin toteuttaminen ja parin testin lisääminen | 
-| yht | 30   |   |
+| 2.5   | 6    |  ratkomisalgoritmin parantelu ja muu siihen liittyvä koodin parantelu  | 
+| 9.5   | 1    |  joitain pylint fixejä | 
+| yht | 37   |   |
