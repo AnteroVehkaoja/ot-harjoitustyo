@@ -186,7 +186,7 @@ class Grid:
         return grid
 
 
-    def update_click(self,pos,button,grid,text):
+    def update_click(self,pos,button,grid,text,clock):
         """_gameloop calls this on a click_
 
         Args:
@@ -208,11 +208,14 @@ class Grid:
                     if solve(copye,pos):
                         break
                     x += 1
+            clock.reset()
         #collision detection
         for row in self.grid:
             for cell in row:
                 if cell.area.collidepoint(pos):
                     cell.updatecell(grid,cell,button)
+
+        
 
         if self.cellsleft == 0 and (not self.lost):
             self.won = True

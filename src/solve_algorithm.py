@@ -1,7 +1,7 @@
 import copy
 
 class MineZone:
-    """_mine zones with the amount of mines in zone and list of cells in the zone_
+    """_mine zones with the amount of mines in the zone and list of cells in the zone_
     """
     def __init__(self,size,cells):
         """construcor
@@ -23,7 +23,6 @@ class MineZone:
                 return True
         return False
 
-#remember you had an original here for testing
 def solve(grid,pos):
     """_solves a specific grid_
 

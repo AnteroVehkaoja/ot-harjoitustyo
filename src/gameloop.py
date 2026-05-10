@@ -38,7 +38,7 @@ class Gameloop:
         for event in self.event_queue.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # if game is won or lost, write to file
-                if self.grid.update_click(event.pos,event.button,self.grid,self.text):
+                if self.grid.update_click(event.pos,event.button,self.grid,self.text,self.clock):
                     self.file.print(self.clock.get_ticks()//1000,self.grid.info())
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
