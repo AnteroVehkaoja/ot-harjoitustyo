@@ -7,14 +7,14 @@ Sovelluksen avulla käyttäjä pystyy luomaan miinaharava ruudukon, pelaaman sen
 
 
 
- - käyttäjä voi generoida ruudukon  ¤tehty
- - käyttäjä voi interaktoida ruudukon kanssa miinaharavan sääntöjen mukaan ¤ tehty
-    - klikata ruutuja, jos ruudussa on miina mennä epäonnistumisen tilaan ¤tehty
-    - jos ruudussa ei ole miinaa, näyttää ruudun numero ¤tejtu
- - kirjata tuloksen tiedostoon; lopetuksen tila(reset,voitto,häviö),aika, ruudukon koko ¤ tehty
- - ensimmäinen klikattava ruutu on aina 0 ¤tehty
- - jos klikattu ruutu on nolla automaattisesti avaa kaikki ruudut sen ypärillä ¤tehty
- - voi merkata miinoja painamalla tiettya nappia ¤tehty
- - jos miinoja on merkattu numeron ympärillä numeron painaminen avaa sen ympärillä olevat ruudut automaattisesti ¤tehty
- - vapaavalintaiset ruudukon koot sekä miinojen määrät ¤tehty
- - vaihtoehto ruudukon generoidessa mikä varmistaa että ruudukossa ei tarvitse arvata sen suorittamiseksi ¤tehty
+ - käyttäjä voi generoida ruudukon  
+ - käyttäjä voi interaktoida ruudukon kanssa miinaharavan sääntöjen mukaan 
+    - klikata ruutuja, jos ruudussa on miina mennä epäonnistumisen tilaan 
+    - jos ruudussa ei ole miinaa, näyttää ruudun numero 
+ - kirjata tuloksen tiedostoon; lopetuksen tila(reset,voitto,häviö),aika, ruudukon koko 
+ - ensimmäinen klikattava ruutu on aina 0 
+ - jos klikattu ruutu on nolla automaattisesti avaa kaikki ruudut sen ypärillä 
+ - voi merkata miinoja painamalla tiettya nappia 
+ - jos miinoja on merkattu numeron ympärillä numeron painaminen avaa sen ympärillä olevat ruudut automaattisesti 
+ - vapaavalintaiset ruudukon koot sekä miinojen määrät 
+ - vaihtoehto ruudukon generoidessa mikä varmistaa että ruudukossa ei tarvitse arvata sen suorittamiseksi 
